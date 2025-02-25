@@ -1,1 +1,0 @@
-Register Book model with Django admin
