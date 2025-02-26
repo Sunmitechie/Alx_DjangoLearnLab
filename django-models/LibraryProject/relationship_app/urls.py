@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from relationship_app.views import list_books, LibraryDetailView  # Replace 'your_actual_app_name' with the actual app name
-
+from .views import list_books
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('books/', list_books, name='list_books'),
