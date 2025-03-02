@@ -57,6 +57,13 @@ def is_admin(user):
 def admin_view(request):
     return render(request, 'relationship_app/admin_view.html')
 
+def is_register(user):
+    return user.userprofile.role == 'Register'
+
+@user_passes_test(is_register)
+def register_view(request):
+    return render(request, 'relationship_app/register_view.html')
+
 def is_librarian(user):
     return user.userprofile.role == 'Librarian'
 
