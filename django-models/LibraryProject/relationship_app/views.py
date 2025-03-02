@@ -14,11 +14,11 @@ class LibraryDetailView(DetailView):
     context_object_name = 'library'
 
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test, permission_required
 
 def register_view(request):
     if request.method == 'POST':
@@ -65,3 +65,25 @@ def librarian_view(request):
 
 def is_member(user):
     return user.userprofile.role == 'Member'
+
+@user_passes_test(is_member)
+def member_view(request):
+    return render(request, 'relationship_app/member_view.html')
+
+
+@permission_required('relationship_app.can_add_book')
+def add_book(request):
+    # Implementation for adding a book
+    pass
+
+@permission_required('relationship_app.can_change_book')
+def edit_book(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
+    # Implementation for editing a book
+    pass
+
+@permission_required('relationship_app.can_delete_book')
+def delete_book(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
+    # Implementation for deleting a book
+    pass
