@@ -62,7 +62,7 @@ def is_register(user):
 
 @user_passes_test(is_register)
 def register_view(request):
-    return render(request, 'relationship_app/register_view.html')
+    return render(request, 'relationship_app/register.html')
 
 def is_librarian(user):
     return user.userprofile.role == 'Librarian'
