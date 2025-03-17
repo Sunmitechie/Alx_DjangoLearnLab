@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
         'USER': 'admin',
-        'POST': '5432',
+        'PORT': '5432',
     }
 }
 
