@@ -17,4 +17,5 @@ urlpatterns = [
     path('posts/<int:post_id>/comments/new/', add_comment, name='add-comment'),
     path('comments/<int:pk>/edit/', CommentUpdateView.as_view(), name='edit-comment'),
     path('comments/<int:pk>/delete/', CommentDeleteView.as_view(), name='delete-comment'),
+    path('comment/<int:pk>/update/', "post/<int:pk>/comments/new/", 'comment/<int:pk>/delete/'),
 ]
