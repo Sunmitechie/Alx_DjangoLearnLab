@@ -29,3 +29,13 @@ class ProfileView(APIView):
             'followers_count': user.followers.count(),
             'following_count': user.following.count(),
         })
+
+class Login(APIView):
+    def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        user = CustomUser.objects.filter(username=username).first()
+        if user and user.check_password(password):
+            token, created = Token.objects.get_or_create(user=user)
+            return Response({'token': token.key}, status=HTTP_201_CREATED)
+        return Response({'error': 'Invalid credentials'}, status=HTTP_400_BAD_REQUEST)
